@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		203564582122F3ED005E1342 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203564572122F3ED005E1342 /* AppDelegate.swift */; };
-		2035645A2122F3ED005E1342 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203564592122F3ED005E1342 /* ViewController.swift */; };
-		2035645D2122F3ED005E1342 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2035645B2122F3ED005E1342 /* Main.storyboard */; };
+		2035645A2122F3ED005E1342 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203564592122F3ED005E1342 /* MoviesViewController.swift */; };
 		2035645F2122F3EF005E1342 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2035645E2122F3EF005E1342 /* Assets.xcassets */; };
 		203564622122F3EF005E1342 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 203564602122F3EF005E1342 /* LaunchScreen.storyboard */; };
+		2035646E2122F553005E1342 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2035646D2122F553005E1342 /* Extensions.swift */; };
+		203564702122F55F005E1342 /* URLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2035646F2122F55F005E1342 /* URLHelper.swift */; };
+		203564722122F590005E1342 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203564712122F590005E1342 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		203564542122F3ED005E1342 /* ngsison.stratpoint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ngsison.stratpoint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		203564572122F3ED005E1342 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		203564592122F3ED005E1342 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		2035645C2122F3ED005E1342 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		203564592122F3ED005E1342 /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		2035645E2122F3EF005E1342 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		203564612122F3EF005E1342 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		203564632122F3EF005E1342 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2035646D2122F553005E1342 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		2035646F2122F55F005E1342 /* URLHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLHelper.swift; sourceTree = "<group>"; };
+		203564712122F590005E1342 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +58,48 @@
 		203564562122F3ED005E1342 /* ngsison.stratpoint */ = {
 			isa = PBXGroup;
 			children = (
+				2035646C2122F53E005E1342 /* Utilities */,
+				2035646B2122F539005E1342 /* Views */,
+				2035646A2122F535005E1342 /* Models */,
+				203564692122F52D005E1342 /* Supporting Files */,
+			);
+			path = ngsison.stratpoint;
+			sourceTree = "<group>";
+		};
+		203564692122F52D005E1342 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				203564572122F3ED005E1342 /* AppDelegate.swift */,
-				203564592122F3ED005E1342 /* ViewController.swift */,
-				2035645B2122F3ED005E1342 /* Main.storyboard */,
 				2035645E2122F3EF005E1342 /* Assets.xcassets */,
 				203564602122F3EF005E1342 /* LaunchScreen.storyboard */,
 				203564632122F3EF005E1342 /* Info.plist */,
+				203564712122F590005E1342 /* Constants.swift */,
 			);
-			path = ngsison.stratpoint;
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2035646A2122F535005E1342 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2035646B2122F539005E1342 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				203564592122F3ED005E1342 /* MoviesViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2035646C2122F53E005E1342 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				2035646D2122F553005E1342 /* Extensions.swift */,
+				2035646F2122F55F005E1342 /* URLHelper.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,7 +162,6 @@
 			files = (
 				203564622122F3EF005E1342 /* LaunchScreen.storyboard in Resources */,
 				2035645F2122F3EF005E1342 /* Assets.xcassets in Resources */,
-				2035645D2122F3ED005E1342 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +172,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2035645A2122F3ED005E1342 /* ViewController.swift in Sources */,
+				2035645A2122F3ED005E1342 /* MoviesViewController.swift in Sources */,
+				203564702122F55F005E1342 /* URLHelper.swift in Sources */,
+				2035646E2122F553005E1342 /* Extensions.swift in Sources */,
+				203564722122F590005E1342 /* Constants.swift in Sources */,
 				203564582122F3ED005E1342 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,14 +183,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		2035645B2122F3ED005E1342 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2035645C2122F3ED005E1342 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		203564602122F3EF005E1342 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -282,7 +314,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KMTXVH4GTQ;
-				INFOPLIST_FILE = ngsison.stratpoint/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ngsison.stratpoint/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,7 +332,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KMTXVH4GTQ;
-				INFOPLIST_FILE = ngsison.stratpoint/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ngsison.stratpoint/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
