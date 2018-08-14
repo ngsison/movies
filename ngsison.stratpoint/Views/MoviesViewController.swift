@@ -12,6 +12,10 @@ class MoviesViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
     }
+    
+    
+    
+    // MARK: - Network
 
 }
 
