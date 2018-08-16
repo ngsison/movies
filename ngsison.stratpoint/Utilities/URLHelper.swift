@@ -1,6 +1,6 @@
 class URLHelper {
     
-    static func getMoviesURL(_ breed: String) -> String {
+    static func getMoviesURL() -> String {
         return "\(Constants.BASE_URL)list_movies_page1.json"
     }
     
