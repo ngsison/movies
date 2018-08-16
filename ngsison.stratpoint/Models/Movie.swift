@@ -1,7 +1,7 @@
 import Foundation
 
 class Movie {
-    var rating: Double?
+    var rating: NSNumber?
     var genres: [String]?
     var language: String?
     var title: String?

@@ -3,7 +3,7 @@ import UIKit
 class MoviesViewController: UIViewController {
 
     // MARK: - Properties
-    
+    var movies = [Movie]()
     
     
     
@@ -11,12 +11,17 @@ class MoviesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        getMovies()
     }
     
     
     
     // MARK: - Network
-    
+    func getMovies() {
+        MovieService.getMovies { (movies) in
+            self.movies = movies
+        }
+    }
 }
 
 
