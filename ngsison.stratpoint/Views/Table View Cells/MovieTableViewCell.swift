@@ -12,7 +12,12 @@ class MovieTableViewCell: UITableViewCell {
         return view
     }()
     
-    internal lazy var myLabel: UILabel = {
+    internal lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+    
+    internal lazy var yearLabel: UILabel = {
         let label = UILabel()
         return label
     }()
@@ -21,7 +26,11 @@ class MovieTableViewCell: UITableViewCell {
     
     // MARK: - Functions
     func setup(_ movie: Movie) {
-        myLabel.text = movie.title
+        titleLabel.text = movie.title
+        
+        if let year = movie.year {
+            yearLabel.text = "\(year)"
+        }
     }
     
     
@@ -45,7 +54,8 @@ extension MovieTableViewCell {
     
     func setupViews() {
         setupContainer()
-        setupLabel()
+        setupYearLabel()
+        setupTitleLabel()
     }
     
     private func setupContainer() {
@@ -55,14 +65,23 @@ extension MovieTableViewCell {
         container.anchor(bottom: self.bottomAnchor, equalTo: 0)
         container.anchor(right: self.rightAnchor, equalTo: 0)
     }
-    
-    private func setupLabel() {
-        container.addSubview(myLabel)
-        myLabel.anchor(top: container.topAnchor, equalTo: 5)
-        myLabel.anchor(left: container.leftAnchor, equalTo: 5)
-        myLabel.anchor(bottom: container.bottomAnchor, equalTo: 5)
-        myLabel.anchor(right: container.rightAnchor, equalTo: 5)
+
+    private func setupYearLabel() {
+        container.addSubview(yearLabel)
+        yearLabel.anchor(left: container.leftAnchor, equalTo: 10)
+        yearLabel.anchor(right: container.rightAnchor, equalTo: -10)
+        yearLabel.anchor(bottom: container.bottomAnchor, equalTo: -10)
+        yearLabel.anchor(height: 20)
     }
+    
+    private func setupTitleLabel() {
+        container.addSubview(titleLabel)
+        titleLabel.anchor(left: container.leftAnchor, equalTo: 10)
+        titleLabel.anchor(right: container.rightAnchor, equalTo: -10)
+        titleLabel.anchor(bottom: yearLabel.topAnchor, equalTo: 0)
+        titleLabel.anchor(height: 20)
+    }
+
 }
 
 

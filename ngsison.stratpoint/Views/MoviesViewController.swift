@@ -17,7 +17,7 @@ class MoviesViewController: UIViewController {
         tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.rowHeight = 100
+        tableView.rowHeight = 170
         
         return tableView
     }()
@@ -88,6 +88,10 @@ extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
         cell.setup(movies[indexPath.row])
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
