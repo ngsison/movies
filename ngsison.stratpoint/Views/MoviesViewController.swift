@@ -17,7 +17,8 @@ class MoviesViewController: UIViewController {
         tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.rowHeight = 170
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none        
+        tableView.rowHeight = 200
         
         return tableView
     }()

@@ -5,11 +5,11 @@ class URLHelper {
     }
     
     static func getCoverImageURL(for slug: String) -> String {
-        return "\(Constants.BASE_URL)images/\(slug)/-cover.jpg"
+        return "\(Constants.BASE_URL)images/\(slug)-cover.jpg"
     }
     
     static func getBackDropImageURL(for slug: String) -> String {
-        return "\(Constants.BASE_URL)images/\(slug)/-backdrop.jpg"
+        return "\(Constants.BASE_URL)images/\(slug)-backdrop.jpg"
     }
     
 }

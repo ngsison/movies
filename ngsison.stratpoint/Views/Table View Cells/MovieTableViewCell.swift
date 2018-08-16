@@ -14,12 +14,21 @@ class MovieTableViewCell: UITableViewCell {
     
     internal lazy var titleLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textColor = UIColor.white
         return label
     }()
     
     internal lazy var yearLabel: UILabel = {
         let label = UILabel()
+        label.textColor = UIColor.white
         return label
+    }()
+    
+    internal lazy var backgroundImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = UIViewContentMode.scaleAspectFill
+        return imageView
     }()
     
     
@@ -27,10 +36,20 @@ class MovieTableViewCell: UITableViewCell {
     // MARK: - Functions
     func setup(_ movie: Movie) {
         titleLabel.text = movie.title
+        yearLabel.text = movie.year != nil ? "\(movie.year!)" : ""
         
-        if let year = movie.year {
-            yearLabel.text = "\(year)"
+        do {
+            guard let slug = movie.slug else { return }
+            
+            let urlString = URLHelper.getBackDropImageURL(for: slug)
+            guard let url = URL(string: urlString) else { return }
+ 
+            let imageData = try Data(contentsOf: url)
+            self.backgroundImage.image = UIImage(data: imageData)
+        } catch {
+            print("Loading Image Failed")
         }
+
     }
     
     
@@ -54,6 +73,7 @@ extension MovieTableViewCell {
     
     func setupViews() {
         setupContainer()
+        setupBackgroundImage()
         setupYearLabel()
         setupTitleLabel()
     }
@@ -64,6 +84,14 @@ extension MovieTableViewCell {
         container.anchor(left: self.leftAnchor, equalTo: 0)
         container.anchor(bottom: self.bottomAnchor, equalTo: 0)
         container.anchor(right: self.rightAnchor, equalTo: 0)
+    }
+    
+    private func setupBackgroundImage() {
+        container.addSubview(backgroundImage)
+        backgroundImage.anchor(top: container.topAnchor, equalTo: 0)
+        backgroundImage.anchor(left: container.leftAnchor, equalTo: 0)
+        backgroundImage.anchor(bottom: container.bottomAnchor, equalTo: 0)
+        backgroundImage.anchor(right: container.rightAnchor, equalTo: 0)
     }
 
     private func setupYearLabel() {
