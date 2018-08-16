@@ -13,6 +13,29 @@ extension UIColor {
 
 
 
+// MARK: - UIImage
+extension UIImageView {
+    
+    public func loadImage(from url: URL) {
+        self.image = nil
+        
+        URLSession.shared.dataTask(with: url) { (data: Data?, response: URLResponse?, error: Error?) in
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            DispatchQueue.main.async(execute: {
+                let image = UIImage(data: data!)
+                self.image = image
+            })
+        }.resume()
+    }
+    
+}
+
+
+
 // MARK: - UIView
 extension UIView {
     

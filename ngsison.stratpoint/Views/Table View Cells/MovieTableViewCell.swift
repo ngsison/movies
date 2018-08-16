@@ -38,18 +38,10 @@ class MovieTableViewCell: UITableViewCell {
         titleLabel.text = movie.title
         yearLabel.text = movie.year != nil ? "\(movie.year!)" : ""
         
-        do {
-            guard let slug = movie.slug else { return }
-            
-            let urlString = URLHelper.getBackDropImageURL(for: slug)
-            guard let url = URL(string: urlString) else { return }
- 
-            let imageData = try Data(contentsOf: url)
-            self.backgroundImage.image = UIImage(data: imageData)
-        } catch {
-            print("Loading Image Failed")
-        }
+        guard let slug = movie.slug else { return }
 
+        let urlString = URLHelper.getBackDropImageURL(for: slug)
+        backgroundImage.loadImage(from: URL(string: urlString)!)
     }
     
     
@@ -96,16 +88,16 @@ extension MovieTableViewCell {
 
     private func setupYearLabel() {
         container.addSubview(yearLabel)
-        yearLabel.anchor(left: container.leftAnchor, equalTo: 10)
-        yearLabel.anchor(right: container.rightAnchor, equalTo: -10)
-        yearLabel.anchor(bottom: container.bottomAnchor, equalTo: -10)
+        yearLabel.anchor(left: container.leftAnchor, equalTo: 15)
+        yearLabel.anchor(right: container.rightAnchor, equalTo: -15)
+        yearLabel.anchor(bottom: container.bottomAnchor, equalTo: -15)
         yearLabel.anchor(height: 20)
     }
     
     private func setupTitleLabel() {
         container.addSubview(titleLabel)
-        titleLabel.anchor(left: container.leftAnchor, equalTo: 10)
-        titleLabel.anchor(right: container.rightAnchor, equalTo: -10)
+        titleLabel.anchor(left: container.leftAnchor, equalTo: 15)
+        titleLabel.anchor(right: container.rightAnchor, equalTo: -15)
         titleLabel.anchor(bottom: yearLabel.topAnchor, equalTo: 0)
         titleLabel.anchor(height: 20)
     }
