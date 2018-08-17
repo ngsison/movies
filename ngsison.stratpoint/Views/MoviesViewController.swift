@@ -34,6 +34,17 @@ class MoviesViewController: UIViewController {
     
     
     
+    // MARK: - Events
+    private func showMovieDetail(_ movie: Movie) {
+        if let title = movie.title {
+            print("You selected: \(title)")
+        } else {
+            print("You selected an untitled movie")
+        }
+    }
+    
+    
+    
     // MARK: - Setup Views
     private func setupViews() {
         self.title = "Movies"
@@ -89,6 +100,7 @@ extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        showMovieDetail(movies[indexPath.row])
     }
 }
 
