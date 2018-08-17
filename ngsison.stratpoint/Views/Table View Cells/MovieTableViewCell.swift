@@ -27,7 +27,8 @@ class MovieTableViewCell: UITableViewCell {
     
     internal lazy var backgroundImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = UIViewContentMode.scaleAspectFill
+        imageView.contentMode = UIViewContentMode.scaleToFill
+        imageView.clipsToBounds = true
         return imageView
     }()
     

@@ -18,7 +18,7 @@ class MoviesViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none        
-        tableView.rowHeight = 200
+        tableView.rowHeight = 250
         
         return tableView
     }()
