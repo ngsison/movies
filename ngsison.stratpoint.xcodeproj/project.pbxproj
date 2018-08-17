@@ -17,6 +17,7 @@
 		207CF5D72125373500E04CB9 /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207CF5D62125373500E04CB9 /* MovieService.swift */; };
 		207CF5D921253ACD00E04CB9 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207CF5D821253ACD00E04CB9 /* Movie.swift */; };
 		207CF5DC21256BDA00E04CB9 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207CF5DB21256BDA00E04CB9 /* MovieTableViewCell.swift */; };
+		207CF5E22126B00100E04CB9 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207CF5E12126B00100E04CB9 /* MovieDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		207CF5D62125373500E04CB9 /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieService.swift; sourceTree = "<group>"; };
 		207CF5D821253ACD00E04CB9 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		207CF5DB21256BDA00E04CB9 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
+		207CF5E12126B00100E04CB9 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			children = (
 				207CF5DA21256BB900E04CB9 /* Table View Cells */,
 				203564592122F3ED005E1342 /* MoviesViewController.swift */,
+				207CF5E12126B00100E04CB9 /* MovieDetailViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				203564722122F590005E1342 /* Constants.swift in Sources */,
 				207CF5D72125373500E04CB9 /* MovieService.swift in Sources */,
 				207CF5DC21256BDA00E04CB9 /* MovieTableViewCell.swift in Sources */,
+				207CF5E22126B00100E04CB9 /* MovieDetailViewController.swift in Sources */,
 				203564582122F3ED005E1342 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

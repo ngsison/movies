@@ -34,19 +34,6 @@ class MovieTableViewCell: UITableViewCell {
     
     
     
-    // MARK: - Functions
-    func setup(_ movie: Movie) {
-        titleLabel.text = movie.title
-        yearLabel.text = movie.year != nil ? "\(movie.year!)" : ""
-        
-        guard let slug = movie.slug else { return }
-
-        let urlString = URLHelper.getBackDropImageURL(for: slug)
-        backgroundImage.loadImage(from: URL(string: urlString)!)
-    }
-    
-    
-    
     // MARK: - Overrides
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -56,14 +43,23 @@ class MovieTableViewCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+ 
     
-}
-
-
-
-// MARK: - Extension - SetupViews
-extension MovieTableViewCell {
     
+    // MARK: - Functions
+    func setup(_ movie: Movie) {
+        titleLabel.text = movie.title
+        yearLabel.text = movie.year != nil ? "\(movie.year!)" : ""
+        
+        guard let slug = movie.slug else { return }
+        
+        let urlString = URLHelper.getBackDropImageURL(for: slug)
+        backgroundImage.loadImage(from: URL(string: urlString)!)
+    }
+    
+    
+    
+    // MARK: - Setup Views
     func setupViews() {
         setupContainer()
         setupBackgroundImage()
@@ -86,7 +82,7 @@ extension MovieTableViewCell {
         backgroundImage.anchor(bottom: container.bottomAnchor, equalTo: 0)
         backgroundImage.anchor(right: container.rightAnchor, equalTo: 0)
     }
-
+    
     private func setupYearLabel() {
         container.addSubview(yearLabel)
         yearLabel.anchor(left: container.leftAnchor, equalTo: 15)
@@ -102,10 +98,7 @@ extension MovieTableViewCell {
         titleLabel.anchor(bottom: yearLabel.topAnchor, equalTo: 0)
         titleLabel.anchor(height: 20)
     }
-
 }
-
-
 
 
 
