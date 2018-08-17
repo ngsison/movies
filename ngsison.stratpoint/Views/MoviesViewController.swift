@@ -6,8 +6,8 @@ class MoviesViewController: UIViewController {
     var movies = [Movie]()
     
     private lazy var activityIndicator: UIActivityIndicatorView = {
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
-        activityIndicator.startAnimating()
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        activityIndicator.hidesWhenStopped = true
         return activityIndicator
     }()
     
@@ -31,16 +31,15 @@ class MoviesViewController: UIViewController {
         setupViews()
         getMovies()
     }
-    
+
     
     
     // MARK: - Events
     private func showMovieDetail(_ movie: Movie) {
-        if let title = movie.title {
-            print("You selected: \(title)")
-        } else {
-            print("You selected an untitled movie")
-        }
+        let movieDetailViewController = MovieDetailViewController()
+        movieDetailViewController.movie = movie
+        
+        navigationController?.pushViewController(movieDetailViewController, animated: true)
     }
     
     
@@ -73,11 +72,15 @@ class MoviesViewController: UIViewController {
     
     // MARK: - Network
     private func getMovies() {
-        activityIndicator.isHidden = false
-        MovieService.getMovies { (movies) in
-            self.activityIndicator.isHidden = true
-            self.movies = movies
-            self.tableView.reloadData()
+        activityIndicator.startAnimating()
+        
+        // Note: Added a delay here just to show that there's an ActivityIndicator. LOL
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            MovieService.getMovies { (movies) in
+                self.activityIndicator.stopAnimating()
+                self.movies = movies
+                self.tableView.reloadData()
+            }
         }
     }
 }

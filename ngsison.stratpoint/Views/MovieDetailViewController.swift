@@ -5,6 +5,7 @@ class MovieDetailViewController: UIViewController {
     
     
     // MARK: - Properties
+    var movie: Movie?
     
     
     
@@ -26,6 +27,9 @@ class MovieDetailViewController: UIViewController {
     
     // MARK: - Setup Views
     func setupViews() {
-        self.view.backgroundColor = UIColor.red
+        if let title = movie?.title {
+            self.title = title
+        }
+        self.view.backgroundColor = UIColor.white
     }
 }
