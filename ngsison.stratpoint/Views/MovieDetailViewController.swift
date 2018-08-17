@@ -43,9 +43,19 @@ class MovieDetailViewController: UIViewController {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = UIColor.white
         return label
+    }()
+    
+    private lazy var overviewTextView: UITextView = {
+        let textView = UITextView()
+        textView.isEditable = false
+        textView.backgroundColor = UIColor.black
+        textView.textColor = UIColor.white
+        textView.textAlignment = NSTextAlignment.justified
+        textView.font = UIFont.systemFont(ofSize: 16)
+        return textView
     }()
     
     
@@ -93,12 +103,13 @@ class MovieDetailViewController: UIViewController {
         else { return }
         
         self.title = title
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = UIColor.black
         
         setupBackgroundImage()
         setupCoverImage()
         setupYearAndRatingContainer()
         setupTitle()
+        setupOverView()
     }
     
     private func setupBackgroundImage() {
@@ -150,5 +161,20 @@ class MovieDetailViewController: UIViewController {
         titleLabel.anchor(right: backgroundImageView.rightAnchor, equalTo: -15)
         titleLabel.anchor(bottom: yearAndRatingContainer.topAnchor, equalTo: 0)
         titleLabel.anchor(height: 20)
+    }
+    
+    private func setupOverView() {
+        guard
+            let movie = self.movie,
+            let overview = movie.overview
+            else { return }
+        
+        overviewTextView.text = overview
+        
+        self.view.addSubview(overviewTextView)
+        overviewTextView.anchor(top: backgroundImageView.bottomAnchor, equalTo: 15)
+        overviewTextView.anchor(left: self.view.leftAnchor, equalTo: 15)
+        overviewTextView.anchor(bottom: self.view.bottomAnchor, equalTo: -15)
+        overviewTextView.anchor(right: self.view.rightAnchor, equalTo: -15)
     }
 }
