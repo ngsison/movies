@@ -75,7 +75,7 @@ class MoviesViewController: UIViewController {
         activityIndicator.startAnimating()
         
         // Note: Added a delay here just to show that there's an ActivityIndicator. LOL
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             MovieService.getMovies { (movies) in
                 self.activityIndicator.stopAnimating()
                 self.movies = movies

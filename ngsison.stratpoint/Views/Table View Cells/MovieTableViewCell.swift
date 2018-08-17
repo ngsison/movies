@@ -9,7 +9,7 @@ class MovieTableViewCell: UITableViewCell {
     
     private lazy var backgroundImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = UIViewContentMode.scaleToFill
+        imageView.contentMode = UIViewContentMode.scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
