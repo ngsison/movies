@@ -5,13 +5,13 @@ class MoviesViewController: UIViewController {
     // MARK: - Properties
     var movies = [Movie]()
     
-    internal lazy var activityIndicator: UIActivityIndicatorView = {
+    private lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
         activityIndicator.startAnimating()
         return activityIndicator
     }()
     
-    internal lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let tableView = UITableView()
         
         tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.identifier)
@@ -34,22 +34,7 @@ class MoviesViewController: UIViewController {
     
     
     
-    // MARK: - Network
-    func getMovies() {
-        activityIndicator.isHidden = false
-        MovieService.getMovies { (movies) in
-            self.activityIndicator.isHidden = true
-            self.movies = movies
-            self.tableView.reloadData()
-        }
-    }
-}
-
-
-
-// MARK: - Extension: SetupViews
-extension MoviesViewController {
-    
+    // MARK: - Setup Views
     private func setupViews() {
         self.title = "Movies"
         self.view.backgroundColor = .red
@@ -73,6 +58,17 @@ extension MoviesViewController {
         activityIndicator.anchor(centerY: self.view.centerYAnchor)
     }
     
+    
+    
+    // MARK: - Network
+    private func getMovies() {
+        activityIndicator.isHidden = false
+        MovieService.getMovies { (movies) in
+            self.activityIndicator.isHidden = true
+            self.movies = movies
+            self.tableView.reloadData()
+        }
+    }
 }
 
 

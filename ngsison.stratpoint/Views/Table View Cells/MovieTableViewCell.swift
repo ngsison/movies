@@ -7,25 +7,25 @@ class MovieTableViewCell: UITableViewCell {
     // MARK: - Properties
     static let identifier = "movieTableViewCell"
     
-    internal lazy var container: UIView = {
+    private lazy var container: UIView = {
         let view = UIView()
         return view
     }()
     
-    internal lazy var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = UIColor.white
         return label
     }()
     
-    internal lazy var yearLabel: UILabel = {
+    private lazy var yearLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
         return label
     }()
     
-    internal lazy var backgroundImage: UIImageView = {
+    private lazy var backgroundImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = UIViewContentMode.scaleToFill
         imageView.clipsToBounds = true
@@ -60,7 +60,7 @@ class MovieTableViewCell: UITableViewCell {
     
     
     // MARK: - Setup Views
-    func setupViews() {
+    private func setupViews() {
         setupContainer()
         setupBackgroundImage()
         setupYearLabel()
