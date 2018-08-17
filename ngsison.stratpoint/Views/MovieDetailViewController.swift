@@ -21,14 +21,29 @@ class MovieDetailViewController: UIViewController {
         return imageView
     }()
     
+    private lazy var yearAndRatingContainer: UIStackView = {
+        let stackView = UIStackView()
+        stackView.distribution = UIStackViewDistribution.fillEqually
+        return stackView
+    }()
+    
     private lazy var yearLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor.white
         return label
     }()
     
     private lazy var ratingLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor.white
+        return label
+    }()
+    
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textColor = UIColor.white
         return label
     }()
@@ -51,11 +66,13 @@ class MovieDetailViewController: UIViewController {
     
     // MARK: - Functions
     private func loadBackgroundImage() {
-        if let movie = self.movie {
-            guard let slug = movie.slug else { return }
-            let urlString = URLHelper.getBackDropImageURL(for: slug)
-            backgroundImageView.loadImage(from: URL(string: urlString)!)
-        }
+        guard
+            let movie = self.movie,
+            let slug = movie.slug
+        else { return }
+        
+        let urlString = URLHelper.getBackDropImageURL(for: slug)
+        backgroundImageView.loadImage(from: URL(string: urlString)!)
     }
     
     private func loadCoverImage() {
@@ -70,12 +87,18 @@ class MovieDetailViewController: UIViewController {
     
     // MARK: - Setup Views
     private func setupViews() {
-        if let title = movie?.title { self.title = title }
+        guard
+            let movie = self.movie,
+            let title = movie.title
+        else { return }
+        
+        self.title = title
         self.view.backgroundColor = UIColor.white
         
         setupBackgroundImage()
         setupCoverImage()
-        setupYearAndRating()
+        setupYearAndRatingContainer()
+        setupTitle()
     }
     
     private func setupBackgroundImage() {
@@ -94,25 +117,38 @@ class MovieDetailViewController: UIViewController {
         coverImageView.anchor(height: 165)
     }
     
-    private func setupYearAndRating() {
-        if let movie = self.movie {
-            guard let year = movie.year, let rating = movie.rating else { return }
-            yearLabel.text = "Year: \(year)"
-            ratingLabel.text = "Rating: \(rating.doubleValue)"
-        }
+    private func setupYearAndRatingContainer() {
+        guard
+            let movie = self.movie,
+            let year = movie.year,
+            let rating = movie.rating
+        else { return }
         
-        let stackView = UIStackView()
-        stackView.distribution = UIStackViewDistribution.fillEqually
-        stackView.addArrangedSubview(yearLabel)
-        stackView.addArrangedSubview(ratingLabel)
+        yearLabel.text = "Year: \(year)"
+        ratingLabel.text = "Rating: \(rating.doubleValue)"
         
-        stackView.addSubview(yearLabel)
-        stackView.addSubview(ratingLabel)
-        backgroundImageView.addSubview(stackView)
+        yearAndRatingContainer.addArrangedSubview(yearLabel)
+        yearAndRatingContainer.addArrangedSubview(ratingLabel)
+        backgroundImageView.addSubview(yearAndRatingContainer)
         
-        stackView.anchor(left: coverImageView.rightAnchor, equalTo: 15)
-        stackView.anchor(right: backgroundImageView.rightAnchor, equalTo: -15)
-        stackView.anchor(bottom: backgroundImageView.bottomAnchor, equalTo: -15)
-        stackView.anchor(height: 20)
+        yearAndRatingContainer.anchor(left: coverImageView.rightAnchor, equalTo: 15)
+        yearAndRatingContainer.anchor(right: backgroundImageView.rightAnchor, equalTo: -15)
+        yearAndRatingContainer.anchor(bottom: backgroundImageView.bottomAnchor, equalTo: -15)
+        yearAndRatingContainer.anchor(height: 20)
+    }
+    
+    private func setupTitle() {
+        guard
+            let movie = self.movie,
+            let title = movie.title
+        else { return }
+        
+        titleLabel.text = title
+        
+        backgroundImageView.addSubview(titleLabel)
+        titleLabel.anchor(left: coverImageView.rightAnchor, equalTo: 15)
+        titleLabel.anchor(right: backgroundImageView.rightAnchor, equalTo: -15)
+        titleLabel.anchor(bottom: yearAndRatingContainer.topAnchor, equalTo: 0)
+        titleLabel.anchor(height: 20)
     }
 }
