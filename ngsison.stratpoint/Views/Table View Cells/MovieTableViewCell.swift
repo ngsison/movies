@@ -7,7 +7,7 @@ class MovieTableViewCell: UITableViewCell {
     // MARK: - Properties
     static let identifier = "movieTableViewCell"
     
-    private lazy var backgroundImage: UIImageView = {
+    private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = UIViewContentMode.scaleAspectFill
         imageView.clipsToBounds = true
@@ -47,9 +47,8 @@ class MovieTableViewCell: UITableViewCell {
         yearLabel.text = movie.year != nil ? "\(movie.year!)" : ""
         
         guard let slug = movie.slug else { return }
-        
         let urlString = URLHelper.getBackDropImageURL(for: slug)
-        backgroundImage.loadImage(from: URL(string: urlString)!)
+        backgroundImageView.loadImage(from: URL(string: urlString)!)
     }
     
     
@@ -62,11 +61,11 @@ class MovieTableViewCell: UITableViewCell {
     }
     
     private func setupBackgroundImage() {
-        self.addSubview(backgroundImage)
-        backgroundImage.anchor(top: self.topAnchor, equalTo: 0)
-        backgroundImage.anchor(left: self.leftAnchor, equalTo: 0)
-        backgroundImage.anchor(bottom: self.bottomAnchor, equalTo: 0)
-        backgroundImage.anchor(right: self.rightAnchor, equalTo: 0)
+        self.addSubview(backgroundImageView)
+        backgroundImageView.anchor(top: self.topAnchor, equalTo: 0)
+        backgroundImageView.anchor(left: self.leftAnchor, equalTo: 0)
+        backgroundImageView.anchor(bottom: self.bottomAnchor, equalTo: 0)
+        backgroundImageView.anchor(right: self.rightAnchor, equalTo: 0)
     }
     
     private func setupYearLabel() {
