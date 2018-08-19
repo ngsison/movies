@@ -98,7 +98,6 @@ class MovieDetailViewController: UIViewController {
     // MARK: - Setup Views
     private func setupViews() {
         self.view.backgroundColor = UIColor.black
-        self.navigationController?.navigationBar.isTranslucent = false
         
         setupBackgroundImage()
         setupCoverImage()
@@ -109,7 +108,7 @@ class MovieDetailViewController: UIViewController {
     
     private func setupBackgroundImage() {
         self.view.addSubview(backgroundImageView)
-        backgroundImageView.anchor(top: self.view.topAnchor, equalTo: 0)
+        backgroundImageView.anchor(top: self.view.topAnchor, equalTo: 64)
         backgroundImageView.anchor(left: self.view.leftAnchor, equalTo: 0)
         backgroundImageView.anchor(right: self.view.rightAnchor, equalTo: 0)
         backgroundImageView.anchor(height: self.view.bounds.height * 0.4)
