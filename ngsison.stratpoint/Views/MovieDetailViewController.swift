@@ -65,11 +65,7 @@ class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
     }
-    
-    
-    
-    // MARK: - Events
-    
+
     
     
     // MARK: - Functions
@@ -108,6 +104,7 @@ class MovieDetailViewController: UIViewController {
         
         self.title = title
         self.view.backgroundColor = UIColor.black
+        self.navigationController?.navigationBar.isTranslucent = false
         
         setupBackgroundImage()
         setupCoverImage()

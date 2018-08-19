@@ -48,8 +48,11 @@ class MoviesViewController: UIViewController {
     private func showMovieDetail(_ movie: Movie) {
         delegate?.didSelectMovie(movie)
         
-        if let detailViewController = delegate as? MovieDetailViewController {
-            self.splitViewController?.showDetailViewController(detailViewController, sender: nil)
+        if
+            let detailViewController = delegate as? MovieDetailViewController,
+            let detailNavigationController = detailViewController.navigationController
+        {
+            self.splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
         }
     }
     

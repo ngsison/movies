@@ -8,13 +8,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+        let splitViewController =  UISplitViewController()
+        
         let detailViewController = MovieDetailViewController()
+        detailViewController.navigationItem.leftItemsSupplementBackButton = true
+        detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
         
         let masterViewController = MoviesViewController()
         masterViewController.delegate = detailViewController
         
-        let splitViewController =  UISplitViewController()
-        splitViewController.viewControllers = [masterViewController, detailViewController]
+        let detailNavigationController = UINavigationController(rootViewController: detailViewController)
+        let masterNavigationController = UINavigationController(rootViewController: masterViewController)
+        
+        splitViewController.viewControllers = [masterNavigationController, detailNavigationController]
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = splitViewController
