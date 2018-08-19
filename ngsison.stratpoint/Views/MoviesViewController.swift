@@ -38,6 +38,10 @@ class MoviesViewController: UIViewController {
     // MARK: - Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.splitViewController?.delegate = self
+        self.splitViewController?.preferredDisplayMode = .allVisible
+        
         setupViews()
         getMovies()
     }
@@ -95,8 +99,14 @@ class MoviesViewController: UIViewController {
                 self.movies = movies
                 self.tableView.reloadData()
                 
-                if movies.count > 0 {
-                    self.delegate?.didSelectMovie(movies.first!)
+                if UI_USER_INTERFACE_IDIOM() == .pad {
+                    // Select the first movie so that the detailViewController will not display a blank screen
+                    if movies.count > 0 {
+                        self.delegate?.didSelectMovie(movies.first!)
+                    }
+                } else {
+                    // Display the masterViewController instead of detailViewController
+                    
                 }
             }
         }
@@ -127,8 +137,13 @@ extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
 
 
 
-
-
+// MARK: - Extension: UISplitViewController
+extension MoviesViewController: UISplitViewControllerDelegate {
+    
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+        return true
+    }
+}
 
 
 
