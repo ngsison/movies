@@ -7,12 +7,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        let moviesViewController = MoviesViewController()
-        let navigationController = UINavigationController(rootViewController: moviesViewController)
+
+        let masterViewController = MoviesViewController()
+        let detailViewController = MovieDetailViewController()
+        let splitViewController =  UISplitViewController()
+        splitViewController.viewControllers = [masterViewController, detailViewController]
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = navigationController
+        window?.rootViewController = splitViewController
+    
         window?.makeKeyAndVisible()
         
         return true
