@@ -99,14 +99,8 @@ class MoviesViewController: UIViewController {
                 self.movies = movies
                 self.tableView.reloadData()
                 
-                if UI_USER_INTERFACE_IDIOM() == .pad {
-                    // Select the first movie so that the detailViewController will not display a blank screen
-                    if movies.count > 0 {
-                        self.delegate?.didSelectMovie(movies.first!)
-                    }
-                } else {
-                    // Display the masterViewController instead of detailViewController
-                    
+                if movies.count > 0 {
+                    self.delegate?.didSelectMovie(movies.first!)
                 }
             }
         }
