@@ -99,7 +99,7 @@ class MoviesViewController: UIViewController {
                 self.movies = movies
                 self.tableView.reloadData()
                 
-                if movies.count > 0 {
+                if movies.count > 0 && UI_USER_INTERFACE_IDIOM() == .pad {
                     self.delegate?.didSelectMovie(movies.first!)
                 }
             }

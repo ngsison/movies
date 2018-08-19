@@ -63,46 +63,40 @@ class MovieDetailViewController: UIViewController {
     // MARK: - Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        setupViews()
+        loadDataToUI()
     }
 
     
     
     // MARK: - Functions
-    private func setupUI() {
-        setupViews()
-        loadBackgroundImage()
-        loadCoverImage()
-    }
-    
-    private func loadBackgroundImage() {
+    func loadDataToUI() {
         guard
             let movie = self.movie,
+            let title = movie.title,
+            let year = movie.year,
+            let rating = movie.rating,
+            let overview = movie.overview,
             let slug = movie.slug
         else { return }
         
-        let urlString = URLHelper.getBackDropImageURL(for: slug)
-        backgroundImageView.loadImage(from: URL(string: urlString)!)
-    }
-    
-    private func loadCoverImage() {
-        if let movie = self.movie {
-            guard let slug = movie.slug else { return }
-            let urlString = URLHelper.getCoverImageURL(for: slug)
-            coverImageView.loadImage(from: URL(string: urlString)!)
-        }
+        self.title = title
+        titleLabel.text = title
+        yearLabel.text = "Year: \(year)"
+        ratingLabel.text = "Rating: \(rating.doubleValue)"
+        overviewTextView.text = overview
+        
+        let backdropImageURL = URLHelper.getBackDropImageURL(for: slug)
+        backgroundImageView.loadImage(from: URL(string: backdropImageURL)!)
+        
+        let coverImageURL = URLHelper.getCoverImageURL(for: slug)
+        coverImageView.loadImage(from: URL(string: coverImageURL)!)
     }
     
     
     
     // MARK: - Setup Views
     private func setupViews() {
-        guard
-            let movie = self.movie,
-            let title = movie.title
-        else { return }
-        
-        self.title = title
         self.view.backgroundColor = UIColor.black
         self.navigationController?.navigationBar.isTranslucent = false
         
@@ -118,7 +112,7 @@ class MovieDetailViewController: UIViewController {
         backgroundImageView.anchor(top: self.view.topAnchor, equalTo: 0)
         backgroundImageView.anchor(left: self.view.leftAnchor, equalTo: 0)
         backgroundImageView.anchor(right: self.view.rightAnchor, equalTo: 0)
-        backgroundImageView.anchor(height: self.view.frame.height * 0.4)
+        backgroundImageView.anchor(height: self.view.bounds.height * 0.4)
     }
     
     private func setupCoverImage() {
@@ -130,15 +124,6 @@ class MovieDetailViewController: UIViewController {
     }
     
     private func setupYearAndRatingContainer() {
-        guard
-            let movie = self.movie,
-            let year = movie.year,
-            let rating = movie.rating
-        else { return }
-        
-        yearLabel.text = "Year: \(year)"
-        ratingLabel.text = "Rating: \(rating.doubleValue)"
-        
         yearAndRatingContainer.addArrangedSubview(yearLabel)
         yearAndRatingContainer.addArrangedSubview(ratingLabel)
         backgroundImageView.addSubview(yearAndRatingContainer)
@@ -150,13 +135,6 @@ class MovieDetailViewController: UIViewController {
     }
     
     private func setupTitle() {
-        guard
-            let movie = self.movie,
-            let title = movie.title
-        else { return }
-        
-        titleLabel.text = title
-        
         backgroundImageView.addSubview(titleLabel)
         titleLabel.anchor(left: coverImageView.rightAnchor, equalTo: 15)
         titleLabel.anchor(right: backgroundImageView.rightAnchor, equalTo: -15)
@@ -165,13 +143,6 @@ class MovieDetailViewController: UIViewController {
     }
     
     private func setupOverView() {
-        guard
-            let movie = self.movie,
-            let overview = movie.overview
-            else { return }
-        
-        overviewTextView.text = overview
-        
         self.view.addSubview(overviewTextView)
         overviewTextView.anchor(top: backgroundImageView.bottomAnchor, equalTo: 15)
         overviewTextView.anchor(left: self.view.leftAnchor, equalTo: 15)
@@ -187,7 +158,7 @@ extension MovieDetailViewController: MoviesViewControllerDelegate {
     
     func didSelectMovie(_ movie: Movie) {
         self.movie = movie
-        setupUI()
+        self.loadDataToUI()
     }
     
 }
