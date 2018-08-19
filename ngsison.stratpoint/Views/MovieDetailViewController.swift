@@ -63,9 +63,7 @@ class MovieDetailViewController: UIViewController {
     // MARK: - Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
-        loadBackgroundImage()
-        loadCoverImage()
+        setupUI()
     }
     
     
@@ -75,6 +73,12 @@ class MovieDetailViewController: UIViewController {
     
     
     // MARK: - Functions
+    private func setupUI() {
+        setupViews()
+        loadBackgroundImage()
+        loadCoverImage()
+    }
+    
     private func loadBackgroundImage() {
         guard
             let movie = self.movie,
@@ -177,4 +181,16 @@ class MovieDetailViewController: UIViewController {
         overviewTextView.anchor(bottom: self.view.bottomAnchor, equalTo: -15)
         overviewTextView.anchor(right: self.view.rightAnchor, equalTo: -15)
     }
+}
+
+
+
+// MARK: - Extension: MoviesViewControllerDelegate
+extension MovieDetailViewController: MoviesViewControllerDelegate {
+    
+    func didSelectMovie(_ movie: Movie) {
+        self.movie = movie
+        setupUI()
+    }
+    
 }

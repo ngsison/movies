@@ -1,8 +1,18 @@
 import UIKit
 
+
+
+// MARK: - Protocols
+protocol MoviesViewControllerDelegate {
+    func didSelectMovie(_ movie: Movie)
+}
+
+
+
 class MoviesViewController: UIViewController {
 
     // MARK: - Properties
+    var delegate: MoviesViewControllerDelegate?
     var movies = [Movie]()
     
     private lazy var activityIndicator: UIActivityIndicatorView = {
@@ -36,10 +46,11 @@ class MoviesViewController: UIViewController {
     
     // MARK: - Events
     private func showMovieDetail(_ movie: Movie) {
-        let movieDetailViewController = MovieDetailViewController()
-        movieDetailViewController.movie = movie
+        delegate?.didSelectMovie(movie)
         
-        navigationController?.pushViewController(movieDetailViewController, animated: true)
+        if let detailViewController = delegate as? MovieDetailViewController {
+            self.splitViewController?.showDetailViewController(detailViewController, sender: nil)
+        }
     }
     
     
@@ -80,6 +91,10 @@ class MoviesViewController: UIViewController {
                 self.activityIndicator.stopAnimating()
                 self.movies = movies
                 self.tableView.reloadData()
+                
+                if movies.count > 0 {
+                    self.delegate?.didSelectMovie(movies.first!)
+                }
             }
         }
     }

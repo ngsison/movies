@@ -8,8 +8,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-        let masterViewController = MoviesViewController()
         let detailViewController = MovieDetailViewController()
+        
+        let masterViewController = MoviesViewController()
+        masterViewController.delegate = detailViewController
+        
         let splitViewController =  UISplitViewController()
         splitViewController.viewControllers = [masterViewController, detailViewController]
         
