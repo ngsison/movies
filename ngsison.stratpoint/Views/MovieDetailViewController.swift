@@ -118,7 +118,7 @@ class MovieDetailViewController: UIViewController {
         backgroundImageView.anchor(top: self.view.topAnchor, equalTo: 0)
         backgroundImageView.anchor(left: self.view.leftAnchor, equalTo: 0)
         backgroundImageView.anchor(right: self.view.rightAnchor, equalTo: 0)
-        backgroundImageView.anchor(height: 220)
+        backgroundImageView.anchor(height: self.view.frame.height * 0.4)
     }
     
     private func setupCoverImage() {
